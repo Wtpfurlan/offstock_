@@ -593,7 +593,7 @@ public class Frmcliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnsalvarActionPerformed
 
     private void btnexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnexcluirActionPerformed
-		// TODO add your handling code here:
+		excluirCliente();
     }//GEN-LAST:event_btnexcluirActionPerformed
 
     private void btneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditarActionPerformed
@@ -774,5 +774,20 @@ e será implementado aqui, devemos criar um objeto dessa classe aqui.*/
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e);
 		}
+	}
+	
+	private void excluirCliente(){
+		try {
+			ClienteDAO dao = new ClienteDAO();
+		Clientes obj = new Clientes();
+	
+		obj.setId(Integer.parseInt(intcodigo.getText()));
+		
+		dao.excluirCliente(obj);
+		
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Erro no excluir cliente. Tipo: "+ e);
+		}
+
 	}
 }
