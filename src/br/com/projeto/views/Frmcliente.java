@@ -68,7 +68,7 @@ public class Frmcliente extends javax.swing.JFrame {
         btnnovo = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
-        jFormattedTextField7 = new javax.swing.JFormattedTextField();
+        txtpesquisa = new javax.swing.JFormattedTextField();
         btnListar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaClientes = new javax.swing.JTable();
@@ -434,11 +434,11 @@ public class Frmcliente extends javax.swing.JFrame {
         jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel17.setText("Nome:");
 
-        jFormattedTextField7.setForeground(new java.awt.Color(204, 204, 204));
-        jFormattedTextField7.setText("Digite o nome do cliente aqui!");
-        jFormattedTextField7.addActionListener(new java.awt.event.ActionListener() {
+        txtpesquisa.setForeground(new java.awt.Color(204, 204, 204));
+        txtpesquisa.setText("Digite o nome do cliente aqui!");
+        txtpesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField7ActionPerformed(evt);
+                txtpesquisaActionPerformed(evt);
             }
         });
 
@@ -478,7 +478,7 @@ public class Frmcliente extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel17)
                         .addGap(18, 18, 18)
-                        .addComponent(jFormattedTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtpesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnListar)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -491,7 +491,7 @@ public class Frmcliente extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
-                    .addComponent(jFormattedTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtpesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnListar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -580,9 +580,9 @@ public class Frmcliente extends javax.swing.JFrame {
 		listarClientes();
     }//GEN-LAST:event_btnListarActionPerformed
 
-    private void jFormattedTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField7ActionPerformed
-		// TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField7ActionPerformed
+    private void txtpesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpesquisaActionPerformed
+
+    }//GEN-LAST:event_txtpesquisaActionPerformed
 
     private void boxufActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxufActionPerformed
 		// TODO add your handling code here:
@@ -649,7 +649,6 @@ public class Frmcliente extends javax.swing.JFrame {
     private javax.swing.JTextField intnumero;
     private javax.swing.JFormattedTextField intrgclient;
     private javax.swing.JFormattedTextField inttelfix;
-    private javax.swing.JFormattedTextField jFormattedTextField7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -678,6 +677,7 @@ public class Frmcliente extends javax.swing.JFrame {
     private javax.swing.JTextField txtemail;
     private javax.swing.JTextField txtendereco;
     private javax.swing.JTextField txtnome;
+    private javax.swing.JFormattedTextField txtpesquisa;
     // End of variables declaration//GEN-END:variables
 
 	private void listarClientes() {
@@ -724,7 +724,6 @@ e será implementado aqui, devemos criar um objeto dessa classe aqui.*/
 			/* os textos em rosa representam o endereço dos campos dos botões
 		que serão preenchidos pelo usuário. a funcão .getText() é padrão para capturar textos nesses casos.
 			 */
-			obj.setId(Integer.parseInt(intcodigo.getText()));
 			obj.setNomeCliente(txtnome.getText());
 			obj.setRgCliente(intrgclient.getText());
 			obj.setCpfCliente(intcpf.getText());
@@ -744,7 +743,7 @@ e será implementado aqui, devemos criar um objeto dessa classe aqui.*/
 
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null,
-					"Erro no dao.cadastrarCliente(): " + e);
+					"Erro no dao.cadastrarCliente() no FRMcliente: " + e);
 		}
 
 	}

@@ -19,7 +19,7 @@ public class ClienteDAO {
 	private Connection con;
 	ResultSet rs;
 	PreparedStatement stmt;
-	ArrayList<Clientes> lista = new ArrayList();
+	ArrayList<Clientes> lista = new ArrayList<>();
 
 	public ClienteDAO() {
 		this.con = new ConnectionFactory().getConnection();
@@ -56,7 +56,7 @@ public class ClienteDAO {
 			JOptionPane.showMessageDialog(null, "Cadastrado com Sucesso! :)");
 
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Erro: " + e);
+			JOptionPane.showMessageDialog(null, "Erro no cadastrar módulo DAO: " + e);
 		}
 
 	}
@@ -113,8 +113,8 @@ public class ClienteDAO {
 
 	public ArrayList<Clientes> listarClientes() {
 
-		String sql = "SELECT * FROM tb_clientes";
 		try {
+			String sql = "SELECT * FROM tb_clientes";
 			stmt = con.prepareStatement(sql);
 			rs = stmt.executeQuery();
 
@@ -135,6 +135,42 @@ public class ClienteDAO {
 				obj.setCidadeCliente(rs.getString("cidade"));
 				obj.setUfCliente(rs.getString("estado"));
 				lista.add(obj);
+			}
+
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Erro no ClienteDAO listarClientes(){} :" + e);
+		}
+		return lista;
+	}
+
+	public ArrayList<Clientes> buscarClienteNome(String nome) {
+
+		try {
+			String sql = "SELECT * FROM tb_clientes WHERE nome LIKE ?";
+
+			stmt = con.prepareStatement(sql);
+			stmt.setString(1, nome);
+
+			rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				Clientes obj = new Clientes();
+				obj.setId(rs.getInt("id"));
+				obj.setNomeCliente(rs.getString("nome"));
+				obj.setRgCliente(rs.getString("rg"));
+				obj.setCpfCliente(rs.getString("cpf"));
+				obj.setEmailCliente(rs.getString("email"));
+				obj.setTelFixo(rs.getString("telefone"));
+				obj.setCelCliente(rs.getString("celular"));
+				obj.setCepCliente(rs.getString("cep"));
+				obj.setEnderecoCliente(rs.getString("endereco"));
+				obj.setNumeroCasaCliente(rs.getString("numero"));
+				obj.setComplementoCliente(rs.getString("complemento"));
+				obj.setBairroCliente(rs.getString("bairro"));
+				obj.setCidadeCliente(rs.getString("cidade"));
+				obj.setUfCliente(rs.getString("estado"));
+				lista.add(obj);
+
 			}
 
 		} catch (SQLException e) {
