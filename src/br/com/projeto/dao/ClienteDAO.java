@@ -15,12 +15,13 @@ import java.sql.ResultSet;
 
 public class ClienteDAO {
 
-	// Criando uma conexao como banco de dados apartir de um metodo construtor;
+	// Variáveis Globais
 	private Connection con;
 	ResultSet rs;
 	PreparedStatement stmt;
 	ArrayList<Clientes> lista = new ArrayList<>();
 
+	//criando a conexao com o banco de dado por meio da ConnectionFactory
 	public ClienteDAO() {
 		this.con = new ConnectionFactory().getConnection();
 	}
@@ -143,14 +144,12 @@ public class ClienteDAO {
 		return lista;
 	}
 
-	public ArrayList<Clientes> buscarClienteNome(String nome) {
-
+	public ArrayList<Clientes> buscaClientePorNome(String nome) {
 		try {
 			String sql = "SELECT * FROM tb_clientes WHERE nome LIKE ?";
-
+//con.preparedStatement é usado para criar um objeto que representa a instrução SQL que será executada, sendo que é invocado por meio do objeto Connetion.
 			stmt = con.prepareStatement(sql);
 			stmt.setString(1, nome);
-
 			rs = stmt.executeQuery();
 
 			while (rs.next()) {
@@ -170,11 +169,10 @@ public class ClienteDAO {
 				obj.setCidadeCliente(rs.getString("cidade"));
 				obj.setUfCliente(rs.getString("estado"));
 				lista.add(obj);
-
 			}
 
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Erro no ClienteDAO listarClientes(){} :" + e);
+			JOptionPane.showMessageDialog(null, "Erro no ClienteDAO buscaClientes(){} :" + e);
 		}
 		return lista;
 	}

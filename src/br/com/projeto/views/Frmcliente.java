@@ -10,17 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
-
- @author Thiago
- */
 public class Frmcliente extends javax.swing.JFrame {
-
-	/**
-	 Creates new form Frmcliente
-	 */
-
-
 
 	public Frmcliente() {
 		initComponents();
@@ -69,9 +59,9 @@ public class Frmcliente extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         txtpesquisa = new javax.swing.JFormattedTextField();
-        btnListar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaClientes = new javax.swing.JTable();
+        btnlistar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,6 +87,12 @@ public class Frmcliente extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(26, Short.MAX_VALUE))
         );
+
+        jTabbedPane4.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTabbedPane4FocusLost(evt);
+            }
+        });
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -436,18 +432,9 @@ public class Frmcliente extends javax.swing.JFrame {
 
         txtpesquisa.setForeground(new java.awt.Color(204, 204, 204));
         txtpesquisa.setText("Digite o nome do cliente aqui!");
-        txtpesquisa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtpesquisaActionPerformed(evt);
-            }
-        });
-
-        btnListar.setText("Pesquisar");
-        btnListar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListarActionPerformed(evt);
-            }
-        });
+        txtpesquisa.setActionCommand("<Not Set>");
+        txtpesquisa.setDisabledTextColor(new java.awt.Color(0, 255, 204));
+        txtpesquisa.setSelectedTextColor(new java.awt.Color(255, 0, 0));
 
         tabelaClientes.setBackground(new java.awt.Color(255, 255, 204));
         tabelaClientes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -460,6 +447,11 @@ public class Frmcliente extends javax.swing.JFrame {
                 "Código:", "Nome:", "RG:", "CPF:", "E-mail:", "Telefone Fixo:", "Celular:", "CEP:", "Endereço:", "Número:", "Complemento:", "Bairro:", "cidade", "Estado:"
             }
         ));
+        tabelaClientes.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tabelaClientesFocusGained(evt);
+            }
+        });
         tabelaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabelaClientesMouseClicked(evt);
@@ -467,6 +459,13 @@ public class Frmcliente extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabelaClientes);
         tabelaClientes.getAccessibleContext().setAccessibleName("");
+
+        btnlistar.setText("Listar");
+        btnlistar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnlistarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -480,7 +479,7 @@ public class Frmcliente extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(txtpesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnListar)
+                        .addComponent(btnlistar)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 825, Short.MAX_VALUE))
                 .addContainerGap())
@@ -492,10 +491,10 @@ public class Frmcliente extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
                     .addComponent(txtpesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnListar))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(101, Short.MAX_VALUE))
+                    .addComponent(btnlistar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         jTabbedPane4.addTab("Dados Pessoais", jPanel2);
@@ -576,14 +575,6 @@ public class Frmcliente extends javax.swing.JFrame {
 		// TODO add your handling code here:
     }//GEN-LAST:event_intcpfActionPerformed
 
-    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
-		listarClientes();
-    }//GEN-LAST:event_btnListarActionPerformed
-
-    private void txtpesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpesquisaActionPerformed
-
-    }//GEN-LAST:event_txtpesquisaActionPerformed
-
     private void boxufActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxufActionPerformed
 		// TODO add your handling code here:
     }//GEN-LAST:event_boxufActionPerformed
@@ -604,8 +595,12 @@ public class Frmcliente extends javax.swing.JFrame {
 		// TODO add your handling code here:
     }//GEN-LAST:event_btnnovoActionPerformed
 
+    private void btnlistarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlistarActionPerformed
+		listarClientes();
+    }//GEN-LAST:event_btnlistarActionPerformed
+
     private void tabelaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaClientesMouseClicked
-		// Pegar os dados 
+		// Pegar os dados
 		jTabbedPane4.setSelectedIndex(0);
 
 		intcodigo.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 0).toString());
@@ -622,9 +617,15 @@ public class Frmcliente extends javax.swing.JFrame {
 		txtbairro.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 11).toString());
 		txtcidade.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 12).toString());
 		boxuf.setSelectedItem(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 13).toString());
-		
     }//GEN-LAST:event_tabelaClientesMouseClicked
 
+    private void tabelaClientesFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tabelaClientesFocusGained
+   
+    }//GEN-LAST:event_tabelaClientesFocusGained
+
+    private void jTabbedPane4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabbedPane4FocusLost
+        listarClientes();
+    }//GEN-LAST:event_jTabbedPane4FocusLost
 
 	public static void main(String args[]) {
 
@@ -637,9 +638,9 @@ public class Frmcliente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxuf;
-    private javax.swing.JButton btnListar;
     private javax.swing.JButton btneditar;
     private javax.swing.JButton btnexcluir;
+    private javax.swing.JButton btnlistar;
     private javax.swing.JButton btnnovo;
     private javax.swing.JButton btnsalvar;
     private javax.swing.JFormattedTextField intcelular;
@@ -704,8 +705,7 @@ public class Frmcliente extends javax.swing.JFrame {
 					lista.get(num).getComplementoCliente(),
 					lista.get(num).getBairroCliente(),
 					lista.get(num).getCidadeCliente(),
-					lista.get(num).getUfCliente(),
-				});
+					lista.get(num).getUfCliente(),});
 			}
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Erro no listar: " + e);
@@ -767,25 +767,58 @@ e será implementado aqui, devemos criar um objeto dessa classe aqui.*/
 			obj.setBairroCliente(txtbairro.getText());
 			obj.setCidadeCliente(txtcidade.getText());
 			obj.setUfCliente((String) boxuf.getSelectedItem());
-			
+
 			dao.alterarCliente(obj);
 
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e);
 		}
 	}
-	
-	private void excluirCliente(){
+
+	private void excluirCliente() {
 		try {
 			ClienteDAO dao = new ClienteDAO();
-		Clientes obj = new Clientes();
-	
-		obj.setId(Integer.parseInt(intcodigo.getText()));
-		
-		dao.excluirCliente(obj);
-		
+			Clientes obj = new Clientes();
+
+			obj.setId(Integer.parseInt(intcodigo.getText()));
+
+			dao.excluirCliente(obj);
+
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Erro no excluir cliente. Tipo: "+ e);
+			JOptionPane.showMessageDialog(null, "Erro no excluir cliente. Tipo: " + e);
+		}
+
+	}
+
+	private void buscaClientePeloNome() {
+		try {
+			String nome = "%" + txtpesquisa.getText() + "%";
+			ClienteDAO dao = new ClienteDAO();
+
+			DefaultTableModel model = (DefaultTableModel) tabelaClientes.getModel();
+			model.setNumRows(0);
+
+			ArrayList<Clientes> lista = dao.buscaClientePorNome(nome);
+
+			for (int num = 0; num < lista.size(); num++) {
+				model.addRow(new Object[]{
+					lista.get(num).getId(),
+					lista.get(num).getNomeCliente(),
+					lista.get(num).getRgCliente(),
+					lista.get(num).getCpfCliente(),
+					lista.get(num).getEmailCliente(),
+					lista.get(num).getTelFixo(),
+					lista.get(num).getCelCliente(),
+					lista.get(num).getCepCliente(),
+					lista.get(num).getEnderecoCliente(),
+					lista.get(num).getNumeroCasaCliente(),
+					lista.get(num).getComplementoCliente(),
+					lista.get(num).getBairroCliente(),
+					lista.get(num).getCidadeCliente(),
+					lista.get(num).getUfCliente(),});
+			}
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Erro no FrmCliente: " + e);
 		}
 
 	}

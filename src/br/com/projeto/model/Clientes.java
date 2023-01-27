@@ -25,7 +25,7 @@ public class Clientes {
 	public void setEnderecoCliente(String enderecoCliente) {
 		this.enderecoCliente = enderecoCliente;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
